@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-7 mx-auto">
+        <h1 class="text-center fs-1 mb-4 fw-bold">Login</h1>
+        <div class="card">
+            <div class="card-body px-4 py-5">
+                <form action="" method="POST" novalidate>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInputEmail" placeholder="email">
+                        <label for="floatingInputEmail" class="fs-6">Email address</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" id="floatingInputPassword" placeholder="email">
+                        <label for="floatingInputPassword" class="fs-6">Password</label>
+                    </div>
+                    <button class="btn btn-primary w-100 py-4">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
