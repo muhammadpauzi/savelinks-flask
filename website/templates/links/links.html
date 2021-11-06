@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Links{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-7 mx-auto">
+        <h1 class="fw-bold mb-4">My Links</h1>
+        <a href="/links/create" class="btn text-capitalize btn-primary mb-4">Create Link</a>
+        {% if not links %}
+        <p>You don't have any link, please <a href="/links/create">Create</a> a new link!</p>
+        {% endif %}
+
+        {% for link in links %}
+        <div class="card mb-1">
+            <div class="card-body">
+                <p class="fw-bold mb-1">{{ link.title }}</p>
+                <a href="" class="text-primary d-block">{{ link.url }}</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

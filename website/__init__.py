@@ -18,7 +18,7 @@ def create_app():
     db.init_app(app)
     migrate.init_app(app, db)
 
-    from .models import User
+    from .models import User, Link
 
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
@@ -29,8 +29,10 @@ def create_app():
         return User.query.get(int(id))
 
     from .views import views
+    from .links import links
     from .auth import auth
     app.register_blueprint(views, url_prefix="/")
     app.register_blueprint(auth, url_prefix='/')
+    app.register_blueprint(links, url_prefix='/links')
 
     return app

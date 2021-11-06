@@ -5,21 +5,8 @@
 {% block content %}
 <div class="row">
     <div class="col-md-7 mx-auto">
-        <h1>Home</h1>
-        <button class="btn btn-info">Click Me</button>
-
-        <div class="card">
-            <div class="card-header">
-                <small class="fw-bold">My Links</small>
-            </div>
-            <div class="card-body">
-                <ul>
-                    <li>Link 1</li>
-                    <li>Link 2</li>
-                    <li>Link 3</li>
-                </ul>
-            </div>
-        </div>
+        <h1 class="fw-bold mb-4">Hello {{ user.username }}</h1>
+        <a href="/links" class="btn text-capitalize btn-primary">My Links</a>
     </div>
 </div>
 {% endblock %}
