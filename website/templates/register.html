@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-7 mx-auto">
+        <h1 class="text-center fs-1 mb-4 fw-bold">Register.</h1>
+        <div class="card">
+            <div class="card-body px-4 py-5">
+                <form action="" method="POST" novalidate>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInputUsername" placeholder="Username"
+                            name="username">
+                        <label for="floatingInputUsername" class="fs-6">Username</label>
+                        <small class="text-danger mt-2 d-block">{{ errors.username or '' }}</small>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInputEmail" placeholder="Email"
+                            name="email">
+                        <label for="floatingInputEmail" class="fs-6">Email address</label>
+                        <small class="text-danger mt-2 d-block">{{ errors.email or '' }}</small>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" id="floatingInputPassword"
+                                    placeholder="Password" name="password">
+                                <label for="floatingInputPassword" class="fs-6">Password</label>
+                                <small class="text-danger mt-2 d-block">{{ errors.password or '' }}</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" id="floatingInputRepeatPassword"
+                                    placeholder="Password" name="repeat_password">
+                                <label for="floatingInputRepeatPassword" class="fs-6">Repeat Password</label>
+                                <small class="text-danger mt-2 d-block">{{ errors.repeat_password or '' }}</small>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary w-100 py-4 mb-3">Register</button>
+                    <a href="/login" class="btn btn-sm w-100 fw-bold py-2 text-capitalize">Already have an account?
+                        Login</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
