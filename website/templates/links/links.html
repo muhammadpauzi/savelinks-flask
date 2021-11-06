@@ -14,8 +14,14 @@
         {% for link in links %}
         <div class="card mb-1">
             <div class="card-body">
-                <p class="fw-bold mb-1">{{ link.title }}</p>
+                <p class="fw-bold mb-1">{{ link.title }} <span class="badge bg-primary">{% if link.is_public == '1'
+                        %}Public{% else %}Private{% endif
+                        %}</span></p>
                 <a href="" class="text-primary d-block">{{ link.url }}</a>
+                <div>
+                    <small class="text-muted">Created on {{ link.date_created|datetimeformat }}</small>
+
+                </div>
             </div>
         </div>
         {% endfor %}

@@ -20,6 +20,8 @@ def create_app():
 
     from .models import User, Link
 
+    from . import filters
+
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)

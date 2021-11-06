@@ -8,7 +8,7 @@ links = Blueprint('links', __name__)
 @links.route('/')
 @login_required
 def index():
-    links = Link.query.all()
+    links = Link.query.order_by(Link.date_created.desc()).all()
     return render_template('links/links.html', user=current_user, links=links)
 
 @links.route('/create', methods=['GET', 'POST'])
