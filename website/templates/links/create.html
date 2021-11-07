@@ -21,6 +21,12 @@
                         <label for="floatingInputURL" class="fs-6">URL</label>
                         <small class="text-danger mt-2 d-block">{{ errors.url or '' }}</small>
                     </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="flexCheckIsPublic" name="status">
+                        <label class="form-check-label" for="flexCheckIsPublic">
+                            Is Public
+                        </label>
+                    </div>
                     <div class="row">
                         <div class="col-md-8">
                             <button class="btn btn-primary w-100 py-4 mb-3">Create Link</button>

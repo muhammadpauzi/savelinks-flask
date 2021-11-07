@@ -15,7 +15,10 @@
         <div class="card mb-1">
             <div class="card-body">
                 <p class="fw-bold mb-1">{{ link.title }}</p>
-                <a href="" class="text-primary d-block">{{ link.url }}</a>
+                <small>Full URL : <a href="{{ link.url }}" class="text-primary d-block">{{ link.url }}</a></small>
+                <small>Shortened URL : <a href="/{{ link.shorten_url }}" class="text-primary d-block">{{
+                        link.shorten_url|combine_shorten_url
+                        }}</a></small>
                 <div class="d-flex align-items-center justify-content-between mb-3">
                     <small class="text-muted">Created on {{ link.date_created|datetimeformat }}</small>
                     <div>

@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, request, flash, jsonify, url_for
 from flask_login import login_required, current_user
 
-from website.utils import is_url
+from website.utils import create_random_string, is_url
 from . import db
 from .models import Link
 
@@ -20,7 +20,10 @@ def create():
     if request.method == 'POST':
         title = request.form.get('title').strip()
         url = request.form.get('url').strip()
+        status = request.form.get('status')
 
+        status = 'private' if status != 'on' else 'public'
+        
         if not is_url(url):
             errors['url'] = 'URL is not valid, using (http, https) protocol.'
         if not title:
@@ -28,8 +31,15 @@ def create():
         if not url:
             errors['url'] = 'URL must be not empty.'
 
+        shorten_url = create_random_string()
+
+        while True:
+            link = Link.query.filter_by(shorten_url=shorten_url).first()
+            if not link:
+                break
+
         if len(errors) == 0:
-            new_link = Link(title=title, url=url, shorten_url=url, user_id=current_user.id)
+            new_link = Link(title=title, url=url, status=status, shorten_url=shorten_url, user_id=current_user.id)
             db.session.add(new_link)
             db.session.commit()
             flash('Link successfully created.', category='success')

@@ -33,8 +33,8 @@ def create_app():
     from .views import views
     from .links import links
     from .auth import auth
+    app.register_blueprint(links, url_prefix='/links')
     app.register_blueprint(views, url_prefix="/")
     app.register_blueprint(auth, url_prefix='/')
-    app.register_blueprint(links, url_prefix='/links')
 
     return app

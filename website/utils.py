@@ -1,4 +1,6 @@
 from re import match, fullmatch, compile, IGNORECASE
+from string import ascii_letters, digits
+from random import choice
 
 def is_username(string):
     return True if match('^[A-Za-z0-9]+$', string) else False
@@ -15,3 +17,7 @@ def is_url(string):
         r'(?::\d+)?'  # optional port
         r'(?:/?|[/?]\S+)$', IGNORECASE)
     return regex.search(string)
+
+def create_random_string(length = 7):
+    CHARS = ascii_letters + digits
+    return ''.join([choice(CHARS) for _ in range(length)])
