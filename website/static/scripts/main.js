@@ -1,4 +1,4 @@
-import { deleteLinksButtons, setStatusLinkButtons } from "./elements.js";
+import { deleteLinkButtons, setStatusLinkButtons } from "./elements.js";
 
 function getSpinner() {
     return `<div class="spinner-border spinner-border-sm spinner-grow-sm" role="status">
@@ -54,7 +54,7 @@ async function handleSetStatusLink(e) {
     }
 }
 
-deleteLinksButtons.forEach(button => {
+deleteLinkButtons.forEach(button => {
     button.addEventListener('click', handleDeleteLink);
 });
 
