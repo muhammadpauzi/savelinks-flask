@@ -16,5 +16,5 @@ class Link(db.Model):
     title = db.Column(db.String(128), nullable=False)
     url = db.Column(db.String(512), nullable=False)
     shorten_url = db.Column(db.String(256), nullable=False)
-    is_public = db.Column(db.String(1), nullable=False, default='1')
+    status = db.Column(db.String(10), nullable=False, default='public')
     date_created = db.Column(db.DateTime(), nullable=False, default=datetime.utcnow())

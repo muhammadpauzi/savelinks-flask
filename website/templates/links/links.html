@@ -19,9 +19,7 @@
                 <div class="d-flex align-items-center justify-content-between mb-3">
                     <small class="text-muted">Created on {{ link.date_created|datetimeformat }}</small>
                     <div>
-                        <span class="badge bg-primary">{% if link.is_public == '1'
-                            %}Public{% else %}Private{% endif
-                            %}</span>
+                        <span class="badge bg-primary text-capitalize">{{ link.status }}</span>
                     </div>
                 </div>
                 <div class="row g-1">
