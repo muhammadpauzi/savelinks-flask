@@ -23,7 +23,7 @@ async function handleDeleteLink() {
 
         if (res.status == 200) {
             // hide the card
-            this.parentElement.parentElement.parentElement.parentElement.style.visibility = 'hidden';
+            this.parentElement.parentElement.parentElement.parentElement.remove();
         } else {
             alert('Cannot delete the link, please try again later!')
             console.log(data.message)
