@@ -13,7 +13,7 @@
 .nav-item{
     font-weight: 500 !important;
 }
-
+/* 
 .btn{
     text-transform: uppercase;
     border-radius: .5rem !important;
@@ -66,4 +66,4 @@
         box-shadow: 0 0 0 0.2rem rgba(26, 115, 232, 0.5); }
     .btn-outline-primary:disabled, .btn-outline-primary.disabled {
       color: #1A73E8;
-      background-color: transparent; }
+      background-color: transparent; } */

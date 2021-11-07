@@ -10,7 +10,7 @@
     <link href="{{ url_for('static', filename='styles/main.css') }}" rel="stylesheet" />
 </head>
 
-<body class="bg-gray-200">
+<body class="bg-gray-200 position-relative">
     <nav class="navbar navbar-expand-sm py-3 py-sm-2 navbar-light bg-white shadow-sm">
         <div class="container">
             <a class="navbar-brand fw-bold text-primary" href="/">SaveLinks</a>
@@ -69,6 +69,7 @@
     </div>
 
     <script src="{{ url_for('static', filename='bootstrap-5/js/bootstrap.bundle.min.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='scripts/main.js') }}"></script>
 </body>
 
 </html>
