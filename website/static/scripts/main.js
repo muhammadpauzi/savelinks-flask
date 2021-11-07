@@ -1,4 +1,4 @@
-import { deleteLinksButtons, toastContainer } from "./elements.js";
+import { deleteLinksButtons, setStatusLinkButtons } from "./elements.js";
 
 function getSpinner() {
     return `<div class="spinner-border spinner-border-sm spinner-grow-sm" role="status">
@@ -30,6 +30,34 @@ async function handleDeleteLink() {
     }
 }
 
+async function handleSetStatusLink(e) {
+    try {
+        const id = this.dataset.id;
+        this.innerHTML = getSpinner();
+        const res = await fetch(`/links/${id}/status`, {
+            method: "PUT"
+        });
+        const data = await res.json();
+        if (res.status == 200) {
+            const linkStatus = this.parentElement.parentElement.previousElementSibling.querySelector('.link-status');
+            linkStatus.textContent = data.current_status;
+            this.textContent = `Set to ${data.current_status == 'public' ? 'Private' : 'Public'}`;
+        } else {
+            alert('Cannot update the link, please try again later!')
+            this.textContent = 'Error...';
+            console.log(data.message)
+        }
+
+    } catch (error) {
+        alert("Something went wrong!");
+        console.log(error.message)
+    }
+}
+
 deleteLinksButtons.forEach(button => {
     button.addEventListener('click', handleDeleteLink);
+});
+
+setStatusLinkButtons.forEach(button => {
+    button.addEventListener('click', handleSetStatusLink);
 });

@@ -50,3 +50,17 @@ def delete(link_id):
     db.session.delete(link)
     db.session.commit()
     return jsonify({'message': 'Link successfully deleted.'}), 200
+
+@links.route('/<int:link_id>/status', methods=['PUT'])
+@login_required
+def set_status(link_id):
+    link = Link.query.get(link_id)
+
+    if not link:
+        return jsonify({'message': 'Link does not exist.'}), 404
+    elif current_user.id != link.user_id:
+        return jsonify({'message': 'You don\'t have permission to update this link.'}), 403
+
+    link.status = 'private' if link.status == 'public' else 'public'
+    db.session.commit()
+    return jsonify({'message': 'Link successfully updated.', 'current_status': link.status}), 200

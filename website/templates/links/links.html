@@ -19,11 +19,12 @@
                 <div class="d-flex align-items-center justify-content-between mb-3">
                     <small class="text-muted">Created on {{ link.date_created|datetimeformat }}</small>
                     <div>
-                        <span class="badge bg-primary text-capitalize">{{ link.status }}</span>
+                        <span class="badge bg-primary text-capitalize link-status">{{ link.status }}</span>
                     </div>
                 </div>
                 <div class="row g-1">
                     <div class="col-md-4">
+                        <!-- jangan lupa hapus 's' di 'buttons' -->
                         <button class="btn btn-sm btn-danger w-100 delete-link-buttons" data-id="{{ link.id }}">
                             Delete</button>
                     </div>
@@ -32,8 +33,8 @@
                             Edit</button>
                     </div>
                     <div class="col-md-4">
-                        <button class="btn btn-sm btn-primary w-100" id="">
-                            Set to Private</button>
+                        <button class="btn btn-sm btn-primary w-100 set-status-button" data-id="{{ link.id }}">
+                            Set to {{ 'Private' if link.status == 'public' else 'Public' }}</button>
                     </div>
                 </div>
             </div>
