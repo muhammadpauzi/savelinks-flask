@@ -6,14 +6,19 @@ function getSpinner() {
   </div>`
 }
 
+async function fetchLinks(url_suffix = '', options = {}) {
+    const res = await fetch(`/links${url_suffix}`, options);
+    const data = await res.json();
+    return { res, data };
+}
+
 async function handleDeleteLink() {
     try {
         const id = this.dataset.id;
         this.innerHTML = getSpinner();
-        const res = await fetch(`/links/${id}/delete`, {
+        const { res, data } = await fetchLinks(`/${id}/delete`, {
             method: "DELETE"
         });
-        const data = await res.json();
         this.innerHTML = 'Delete'
 
         if (res.status == 200) {
@@ -30,14 +35,13 @@ async function handleDeleteLink() {
     }
 }
 
-async function handleSetStatusLink(e) {
+async function handleSetStatusLink() {
     try {
         const id = this.dataset.id;
         this.innerHTML = getSpinner();
-        const res = await fetch(`/links/${id}/status`, {
+        const { res, data } = await fetchLinks(`/${id}/status`, {
             method: "PUT"
         });
-        const data = await res.json();
         if (res.status == 200) {
             const linkStatus = this.parentElement.parentElement.previousElementSibling.querySelector('.link-status');
             linkStatus.textContent = data.current_status;
