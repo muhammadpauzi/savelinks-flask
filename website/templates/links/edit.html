@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Link{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-7 mx-auto">
+        <h1 class="fw-bold mb-4">Edit Links</h1>
+
+        <div class="card">
+            <div class="card-body px-4 py-5">
+                <form action="" method="post" novalidate>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInputTitle" name="title" placeholder="Title"
+                            value="{{ link.title }}">
+                        <label for="floatingInputTitle" class="fs-6">Title</label>
+                        <small class="text-danger mt-2 d-block">{{ errors.title or '' }}</small>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="url" class="form-control" id="floatingInputURL" name="url" placeholder="URL"
+                            value="{{ link.url }}">
+                        <label for="floatingInputURL" class="fs-6">URL</label>
+                        <small class="text-danger mt-2 d-block">{{ errors.url or '' }}</small>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="flexCheckIsPublic" name="status" {% if
+                            link.status=='public' %}checked{% endif %}>
+                        <label class="form-check-label" for="flexCheckIsPublic">
+                            Is Public
+                        </label>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <button class="btn btn-primary w-100 py-4 mb-3">Edit Link</button>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="/links" class="btn btn-light w-100 py-4 mb-3">Cancel</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -74,3 +74,41 @@ def set_status(link_id):
     link.status = 'private' if link.status == 'public' else 'public'
     db.session.commit()
     return jsonify({'message': 'Link successfully updated.', 'current_status': link.status}), 200
+
+
+@links.route('/<int:link_id>/edit', methods=['GET', 'POST'])
+@login_required
+def edit(link_id):
+    errors = {}
+    link = Link.query.get(link_id)
+    if request.method == 'POST':
+        title = request.form.get('title').strip()
+        url = request.form.get('url').strip()
+        status = request.form.get('status')
+
+        status = 'private' if status != 'on' else 'public'
+        
+        if not is_url(url):
+            errors['url'] = 'URL is not valid, using (http, https) protocol.'
+        if not title:
+            errors['title'] = 'Title must be not empty.'
+        if not url:
+            errors['url'] = 'URL must be not empty.'
+
+        if len(errors) == 0:
+            link.title = title
+            link.status = status
+            link.url = url
+            db.session.commit()
+            flash('Link successfully edited.', category='success')
+            return redirect(url_for('links.index'))
+
+
+    if not link:
+        flash('Link does not exist.', category='error')
+    elif current_user.id != link.user_id:
+        flash('You don\'t have permission to edit this link.', category='error')
+    else:
+        return render_template('links/edit.html', user=current_user, errors=errors, link=link)
+
+    return redirect(url_for('links.index'))
